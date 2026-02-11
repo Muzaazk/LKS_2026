@@ -56,14 +56,14 @@ input {
             <img src="image.webp" alt="" class="gray-img">
         </div>
         <img  src="image.webp" alt="" class="img">
-        <input type="range" min="0" max="40">
+        <input type="range" min="0" max="400">
     </div>
 
     <script>
         const input = document.querySelector("input");
         const img = document.querySelector(".wrap-gray-img");
         input.addEventListener('input', function() {
-            img.style.height = this.value + '%';
+            img.style.height = this.value + 'px';
         });
     </script>
 </body>

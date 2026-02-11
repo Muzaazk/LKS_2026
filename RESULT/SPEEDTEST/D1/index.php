@@ -38,9 +38,21 @@
           <li class="language-form">
             <form action="" method="post" id="form">
             <select name="lang" id="lang" onchange="submit()">
-              <option value="en" <?= $_POST['lang'] === "en" ? "selected" : "" ?>>English</option>
-              <option value="id" <?= $_POST['lang'] === "id" ? "selected" : "" ?>>Indonesia</option>
-              <option value="dutch" <?= $_POST['lang'] === "dutch" ? "selected" : "" ?>>Dutch</option>
+              <option value="en" <?php 
+                  if (isset($_POST['lang'])) {
+                    echo $_POST['lang'] === "en" ? "selected" : "";
+                  } 
+  ?>>English</option>
+              <option value="id" <?php 
+                  if (isset($_POST['lang'])) {
+                    echo $_POST['lang'] === "id" ? "selected" : "";
+                  } 
+  ?>>Indonesia</option>
+              <option value="dutch" <?php 
+                  if (isset($_POST['lang'])) {
+                    echo $_POST['lang'] === "dutch" ? "selected" : "";
+                  } 
+  ?>>Dutch</option>
             </select>
             </form>
           </li>
@@ -54,18 +66,12 @@
           Multilingual Digital Platform for All
         </h1>
         <div class="article-content">
-          <p>
-            The website has been equipped with a multilingual feature, allowing users to easily switch languages according to their needs. 
-            Simply by clicking the available language selection button, all content on the website will automatically adjust to the selected language. 
-            This feature is designed to provide a more comfortable, flexible, and inclusive user experience for users from diverse linguistic backgrounds.
+          <p><?= $lang['content_1'] ?>
           </p>	
           <p>
             <center><img src="img/images.png" alt="multibahasa" width="450"></center>
           </p>
-          <p>
-            With this multilingual feature, users can access all information, read articles, and use every service available on the website without language barriers. 
-            Every content element—ranging from menus and buttons to informational messages—is displayed consistently and accurately according to the selected language. 
-            This not only enhances user convenience but also expands the website’s reach, enabling it to serve a wider audience both domestically and internationally.
+          <p><?= $lang['content_2'] ?>
           </p>
         </div>
       </div>
