@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -44,7 +45,7 @@ class AuthController extends Controller
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:5'
         ]);
 
@@ -59,7 +60,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user'
+            'role' => $request->role ?? 'user'
         ]);
 
         if (!$user) {
@@ -77,7 +78,7 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         $user = $request->user();
-        $user->currentAccessToken->delete();
+        $user->currentAccessToken()->delete();
 
         return response()->json([
             'success' => true,

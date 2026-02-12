@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -78,11 +79,11 @@ class CategoryController extends Controller
         if (!$findCategory) {
             return response()->json([
                 'success' => false,
-                'message' => 'Category not found"',
+                'message' => 'Category not found',
             ], 404);
         }
 
-        $category = $findCategory->update([
+        $findCategory->update([
             'name' => $request->name,
             'description' => $request->description
         ]);
