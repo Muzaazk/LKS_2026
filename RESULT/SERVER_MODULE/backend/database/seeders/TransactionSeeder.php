@@ -32,5 +32,47 @@ class TransactionSeeder extends Seeder
             'total_amount' => 12000000,
             'payment_method' => 'QRIS'
         ]);
+
+        // transaction_id 
+
+        DB::table('transaction_details')->insert([
+            'transaction_id' => 1,
+            'product_id' => 1,
+            'quantity' => 1,
+            'price' => 15000000,
+            'subtotal' => 15000000,
+        ]);
+
+        DB::table('transaction_details')->insert([
+            'transaction_id' => 1,
+            'product_id' => 3,
+            'quantity' => 2,
+            'price' => 10000,
+            'subtotal' => 20000,
+        ]);
+
+        DB::table('transaction_details')->insert([
+            'transaction_id' => 2,
+            'product_id' => 5,
+            'quantity' => 2,
+            'price' => 75000,
+            'subtotal' => 150000,
+        ]);
+
+        DB::table('transaction_details')->insert([
+            'transaction_id' => 2,
+            'product_id' => 4,
+            'quantity' => 3,
+            'price' => 7000,
+            'subtotal' => 21000,
+        ]);
+
+        DB::table('transaction_details')->insert([
+            'transaction_id' => 3,
+            'product_id' => 2,
+            'quantity' => 1,
+            'price' => 12000000,
+            'subtotal' => 12000000,
+        ]);
     }
 }

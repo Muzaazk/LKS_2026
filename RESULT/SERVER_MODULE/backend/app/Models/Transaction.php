@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\TransactionDetails;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Transaction extends Model
 {
@@ -20,5 +22,10 @@ class Transaction extends Model
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
+    }
+
+    public function transactionDetails(): HasMany
+    {
+        return $this->hasMany(TransactionDetails::class);
     }
 }

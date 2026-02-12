@@ -20,6 +20,24 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('transaction_details', function (Blueprint $table) {
+            $table->id();
+            $table->integer('quantity');
+            $table->decimal('price', 15,2);
+            $table->decimal('subtotal', 15,2);
+            $table->timestamps();
+            $table->foreignId('transaction_id')
+                  ->references('id')
+                  ->on('transactions')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->foreignId('product_id')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        });
     }
 
     /**
