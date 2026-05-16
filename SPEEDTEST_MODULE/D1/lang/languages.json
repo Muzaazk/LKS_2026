@@ -1,0 +1,22 @@
+{
+  "en": {
+    "user": {
+      "name": "Muzamil Zulkarnain Kubro",
+      "role": "Web Developer",
+      "class": "11 PPLG 2"
+    },
+    "welcome": "Welcome to My Website",
+    "desc": "This content is translated using PHP and JSON.",
+    "contact": "Contact Us"
+  },
+  "id": {
+    "user": {
+      "name": "Muzamil Zulkarnain Kubro",
+      "role": "Pengembang Web",
+      "class": "11 PPLG 2"
+    },
+    "welcome": "Selamat Datang di Website Saya",
+    "desc": "Konten ini diterjemahkan menggunakan PHP dan JSON.",
+    "contact": "Hubungi Kami"
+  }
+}

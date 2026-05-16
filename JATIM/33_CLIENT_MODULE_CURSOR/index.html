@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOMBSKUY</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="app" id="app" aria-label="BOMBSKUY game">
+        <header class="hud" id="hud" aria-label="Game HUD">
+          <div class="hud__left">
+            <div class="hud__row">
+              <span class="hud__label">Player</span>
+              <span class="hud__value" id="hudPlayer">-</span>
+            </div>
+            <div class="hud__row">
+              <span class="hud__label">Lives</span>
+              <span class="hud__value hud__lives" id="hudLives"></span>
+            </div>
+          </div>
+
+          <div class="hud__center">
+            <div class="hud__row">
+              <span class="hud__label">Timer</span>
+              <span class="hud__value" id="hudTimer">00:00</span>
+            </div>
+          </div>
+
+          <div class="hud__right">
+            <div class="hud__row">
+              <span class="hud__label">Walls</span>
+              <span class="hud__value" id="hudWalls">0</span>
+            </div>
+            <div class="hud__row">
+              <span class="hud__label">Items</span>
+              <span class="hud__value" id="hudItems">0</span>
+            </div>
+            <div class="hud__row">
+              <span class="hud__label">TNT</span>
+              <span class="hud__value" id="hudTnt">0</span>
+            </div>
+            <div class="hud__row">
+              <span class="hud__label">Ice</span>
+              <span class="hud__value" id="hudIce">0</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="stage" id="stage">
+          <canvas id="gameCanvas" width="1000" height="600" aria-label="Game canvas"></canvas>
+        </main>
+
+        <div class="overlay" id="overlayWelcome" role="dialog" aria-modal="true">
+          <div class="card">
+            <img class="logo" src="./assets/logo.png" alt="BOMBSKUY" />
+            <div class="field">
+              <label for="inputName">Username</label>
+              <input id="inputName" type="text" maxlength="16" placeholder="Enter your name" autocomplete="off" />
+            </div>
+            <div class="actions">
+              <button class="btn btn--primary" id="btnGoLevel" disabled>Play Game</button>
+              <button class="btn" id="btnInstruction">Instruction</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="overlayLevel" role="dialog" aria-modal="true">
+          <div class="card">
+            <img class="logo logo--small" src="./assets/logo_white.png" alt="BOMBSKUY" />
+            <h2 class="title">Select difficulty</h2>
+            <div class="actions actions--grid">
+              <button class="btn btn--primary" data-level="easy">Easy</button>
+              <button class="btn btn--primary" data-level="medium">Medium</button>
+              <button class="btn btn--primary" data-level="hard">Hard</button>
+            </div>
+            <div class="actions">
+              <button class="btn" id="btnBackWelcome">Back</button>
+              <button class="btn" id="btnInstruction2">Instruction</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="overlayCountdown" role="dialog" aria-modal="true">
+          <div class="countdown" id="countdownText">3</div>
+        </div>
+
+        <div class="overlay hidden" id="overlayPause" role="dialog" aria-modal="true">
+          <div class="card">
+            <h2 class="title">Paused</h2>
+            <p class="muted">Press Esc to resume, or click Continue.</p>
+            <div class="actions">
+              <button class="btn btn--primary" id="btnContinue">Continue</button>
+              <button class="btn" id="btnQuit">Quit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="overlayGameOver" role="dialog" aria-modal="true">
+          <div class="card">
+            <h2 class="title">Game Over</h2>
+            <div class="summary">
+              <div><span class="muted">Player</span> <strong id="goPlayer">-</strong></div>
+              <div><span class="muted">Time</span> <strong id="goTime">00:00</strong></div>
+              <div><span class="muted">Score</span> <strong id="goScore">0</strong></div>
+            </div>
+            <div class="actions">
+              <button class="btn btn--primary" id="btnSaveScore">Save Score</button>
+              <button class="btn" id="btnLeaderboards">Leaderboards</button>
+              <button class="btn" id="btnRestart">Restart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="overlayLeaderboard" role="dialog" aria-modal="true">
+          <div class="card card--wide">
+            <div class="card__top">
+              <h2 class="title">Leaderboards</h2>
+              <button class="iconBtn" id="btnCloseLeaderboard" aria-label="Close">X</button>
+            </div>
+            <div class="tableWrap">
+              <table class="table" aria-label="Leaderboard table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Time</th>
+                    <th>Walls</th>
+                    <th>TNT</th>
+                    <th>Ice</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboardBody"></tbody>
+              </table>
+            </div>
+            <div class="actions">
+              <button class="btn btn--primary" id="btnBackFromLeaderboard">Back</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay hidden" id="overlayInstruction" role="dialog" aria-modal="true">
+          <div class="card card--wide">
+            <div class="card__top">
+              <h2 class="title">Instructions</h2>
+              <button class="iconBtn" id="btnCloseInstruction" aria-label="Close">X</button>
+            </div>
+            <ul class="list">
+              <li>Move with <strong>W/A/S/D</strong> or <strong>Arrow keys</strong>.</li>
+              <li>Press <strong>Space</strong> to place a bomb. Bomb explodes after <strong>5 seconds</strong>.</li>
+              <li>Explosion hits 1 tile up/down/left/right (TNT increases range).</li>
+              <li>Brick walls can be destroyed; stone walls cannot.</li>
+              <li>Items can appear from destroyed brick walls: <strong>Broken Heart</strong>, <strong>TNT</strong>, <strong>Ice</strong>.</li>
+              <li><strong>Broken Heart</strong> reduces lives. <strong>Ice</strong> freezes you for 5 seconds.</li>
+              <li>Touching a dog or explosion reduces lives. Lives start at 3.</li>
+              <li>Press <strong>Esc</strong> to pause/resume.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

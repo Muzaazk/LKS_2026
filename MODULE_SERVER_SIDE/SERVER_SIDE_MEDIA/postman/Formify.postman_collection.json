@@ -1,0 +1,1848 @@
+{
+	"info": {
+		"_postman_id": "e6277d2c-dcd9-415d-9e72-7498fdafee82",
+		"name": "Formify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21273862"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.user?.accessToken) {",
+											"    if(response.user?.email === 'user1@webtech.id') {",
+											"        pm.environment.set(\"accessToken\", response.user.accessToken);    ",
+											"    } else if (response.user?.email === 'user2@webtech.id') {",
+											"        pm.environment.set(\"accessToken2\", response.user.accessToken);    ",
+											"    } else if (response.user?.email === 'user3@worldskills.org') {",
+											"        pm.environment.set(\"accessToken3\", response.user.accessToken);    ",
+											"    }",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login invalid field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.user?.accessToken) { ",
+											"    pm.environment.set(\"accessToken\", response.user.accessToken);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login failed",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.user?.accessToken) { ",
+											"    pm.environment.set(\"accessToken\", response.user.accessToken);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"wrongpass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"item": [
+						{
+							"name": "Logout success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Form",
+			"item": [
+				{
+					"name": "Create a Form",
+					"item": [
+						{
+							"name": "Create a Form success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.form?.slug) { ",
+											"    pm.environment.set(\"formSlug\", response.form.slug);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Stacks of Web Tech Members\",\n    \"slug\": \"member-stacks\",\n    \"allowed_domains\": [\"webtech.id\"],\n    \"description\": \"To collect all of favorite stacks\",\n    \"limit_one_response\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a Form invalid field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.form?.slug) { ",
+											"    pm.environment.set(\"formSlug\", response.form.slug);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \n    \"allowed_domains\": \"wrong array\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a Form invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.form?.slug) { ",
+											"    pm.environment.set(\"formSlug\", response.form.slug);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Form\",\n    \"slug\": \"new-form\",\n    \"allowed_domains\": [\"webtech.id\", \"webtech.org\"],\n    \"description\": \"New form description\",\n    \"limit_one_response\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all Forms",
+					"item": [
+						{
+							"name": "Get all Forms success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"let lastForm = response?.forms?.find(form => form?.id === 3);",
+											"",
+											"if(lastForm) {",
+											"    pm.environment.set(\"formSlug\", lastForm.slug);",
+											"} else if(response?.forms?.length > 0) { ",
+											"    pm.environment.set(\"formSlug\", response.forms[0].slug);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Forms invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.forms?.length > 0) { ",
+											"    pm.environment.set(\"formSlug\", response.forms[0].slug);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/v1/forms",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Detail Form",
+					"item": [
+						{
+							"name": "Detail Form success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlugStatic}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlugStatic}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Form invalid form slug",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/v1/forms/invalid-slug",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"invalid-slug"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Form not allowed domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken3}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Form invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "Add a Question",
+					"item": [
+						{
+							"name": "Add a Question success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.question?.id) { ",
+											"    pm.environment.set(\"questionId\", response.question.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Most Favorite JS Framework\",\n    \"choice_type\": \"multiple choice\",\n    \"choices\": [\"React JS\", \"Vue JS\", \"Angular JS\", \"Svelte\"],\n    \"is_required\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Question invalid field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.question?.id) { ",
+											"    pm.environment.set(\"questionId\", response.question.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \n    \"choices\": \"wrong choices\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Question form slug invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.question?.id) { ",
+											"    pm.environment.set(\"questionId\", response.question.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Languages\",\n    \"choice_type\": \"checkboxes\",\n    \"choices\": [\"Go\", \"PHP\", \"Javascript\", \"Python\", \"Dart\", \"C#\"],\n    \"is_required\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/invalid-slug/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"invalid-slug",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Question try acess another user form",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.question?.id) { ",
+											"    pm.environment.set(\"questionId\", response.question.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Languages\",\n    \"choice_type\": \"checkboxes\",\n    \"choices\": [\"Go\", \"PHP\", \"Javascript\", \"Python\", \"Dart\", \"C#\"],\n    \"is_required\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Question invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"",
+											"if(response?.question?.id) { ",
+											"    pm.environment.set(\"questionId\", response.question.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Languages\",\n    \"choice_type\": \"checkboxes\",\n    \"choices\": [\"Go\", \"PHP\", \"Javascript\", \"Python\", \"Dart\", \"C#\"],\n    \"is_required\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Remove a Question",
+					"item": [
+						{
+							"name": "Remove a Question success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions/{{questionId}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions",
+										"{{questionId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Question form slug invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/invalid-slug/questions/{{questionId}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"invalid-slug",
+										"questions",
+										"{{questionId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Question form slug invalid Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions/invalid-question-id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions",
+										"invalid-question-id"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Question try access another user form",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions/{{questionId}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions",
+										"{{questionId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Question invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/questions/{{questionId}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"questions",
+										"{{questionId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Response",
+			"item": [
+				{
+					"name": "Submit Response",
+					"item": [
+						{
+							"name": "Submit Response success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"answers\": [ \n        {\n            \"question_id\": 1,\n            \"value\": \"Ica Amalia\"\n        },\n        {\n            \"question_id\": 2,\n            \"value\": \"Bandung\"\n        },\n        {\n            \"question_id\": 3,\n            \"value\": \"2006-08-01\"\n        },\n        {\n            \"question_id\": 4,\n            \"value\": \"Female\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlugStatic}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlugStatic}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Submit Response invalid field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Submit Response not allowed domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"answers\": [\n        {\n            \"question_id\": 1,\n            \"value\": \"Budi\"\n        },\n        {\n            \"question_id\": 2,\n            \"value\": \"Jakarta\"\n        },\n        {\n            \"question_id\": 5,\n            \"value\": \"Married\"\n        }, \n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Submit Response can't submit twice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"answers\": [ \n        {\n            \"question_id\": 1,\n            \"value\": \"Budi\"\n        },\n        {\n            \"question_id\": 2,\n            \"value\": \"Jakarta\"\n        },\n        {\n            \"question_id\": 3,\n            \"value\": \"2005-08-08\"\n        },\n        {\n            \"question_id\": 4,\n            \"value\": \"Male\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Submit Response invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"answers\": [\n        {\n            \"question_id\": 1,\n            \"value\": \"Budi\"\n        },\n        {\n            \"question_id\": 2,\n            \"value\": \"Jakarta\"\n        },\n        {\n            \"question_id\": 5,\n            \"value\": \"Married\"\n        }, \n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all Responses",
+					"item": [
+						{
+							"name": "Get all Responses success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlugStatic}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlugStatic}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Responses form slug invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/invaliid-slug/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"invaliid-slug",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Responses try access another user form",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken2}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Responses invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/forms/{{formSlug}}/responses",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"{{formSlug}}",
+										"responses"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.logo {
+  float: left;
+}
+
+.nav-link {
+  text-decoration: none;
+  display: flex;
+  gap: 20px;
+  float: right;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+.nav-link .service {
+  display: none;
+  position: absolute;
+}
+
+section {
+  margin: 20vh 0px 0px 60px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown:hover .service {
+  display: block;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.743);
+}
+
+.service ul li {
+  list-style-type: none;
+  width: max-content;
+}

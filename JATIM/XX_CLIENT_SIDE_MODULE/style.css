@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.add-pinpoint {
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.box-pinpoint {
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 7px;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+#closeBtnPinpoint {
+  color: red;
+  cursor: pointer;
+}
+
+#map path:hover {
+  fill: rgb(14, 213, 14);
+}
+
+.wrap-pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.pin-box {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.pin-location,
+.pin-connect,
+.pin-delete {
+  padding: 5px;
+}
+
+.pin-delete {
+  color: red;
+  cursor: pointer;
+}
+.pin-connect {
+  cursor: pointer;
+}
+
+.pin-location,
+.pin-connect {
+  border-right: 1px solid black;
+}
+
+.connect {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 7px;
+  width: max-content;
+  z-index: 999;
+  display: none;
+  position: absolute;
+}
+
+.header-connect {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.wrap-input {
+  display: flex;
+  margin-bottom: 7px;
+}
+
+#closeBtnConnect {
+  color: red;
+  cursor: pointer;
+}
+
+#btnSubmit {
+  background-color: rgb(0, 89, 255);
+  padding: 2px 4px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}

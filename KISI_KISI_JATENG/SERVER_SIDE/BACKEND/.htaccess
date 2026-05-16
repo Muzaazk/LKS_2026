@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Matikan tampilan daftar folder agar tidak "tampil folder"
+    Options -Indexes
+
+    # Arahkan semua request ke folder public/index.php
+    # [QSA] penting agar parameter URL (seperti ?id=1) tidak hilang
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
+
+    # Handle jika orang akses root /BACKEND/ saja
+    RewriteRule ^$ public/index.php [L,QSA]
+</IfModule>

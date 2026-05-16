@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#map-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #e6f2ff;
+  box-sizing: border-box;
+}
+
+#map-wrapper {
+  transform-origin: 0 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.island {
+  fill: #4caf50;
+  stroke: #2e7d32;
+  stroke-width: 2;
+  transition: 0.3s;
+}
+
+.island:hover {
+  fill: #66bb6a;
+  cursor: pointer;
+}
+
+#pins {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#pins .pin-marker {
+  pointer-events: auto;
+}
+
+#lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+#lines line {
+  pointer-events: stroke;
+}
+
+.pin-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.pin-marker.connecting .pin-label {
+  box-shadow: 0 0 12px 4px rgba(255, 180, 0, 0.85);
+  border-color: #ff9800;
+}
+
+.pin-icon {
+  font-size: 22px;
+  line-height: 1;
+  filter: hue-rotate(-15deg) saturate(1.5);
+  user-select: none;
+}
+
+.pin-label {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  max-width: 160px;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pin-label__name {
+  display: block;
+}
+
+.pin-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.pin-btn {
+  border: none;
+  background: #f5f5f5;
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.pin-btn:hover {
+  background: #e0e0e0;
+}
+
+.pin-btn-connect {
+  color: #1565c0;
+}
+
+.pin-btn-delete {
+  color: #c62828;
+}
+
+#pin-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: white;
+  border: 1px solid #333;
+  padding: 8px;
+  border-radius: 8px;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  pointer-events: auto;
+  transform: translate(-50%, calc(-100% - 8px));
+}
+
+#pin-popup input {
+  min-width: 140px;
+  padding: 4px 8px;
+}
+
+#find-route-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  max-height: 100vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.97);
+  border-right: 1px solid #ccc;
+  padding: 16px;
+  z-index: 1500;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  font-size: 14px;
+}
+
+#find-route-panel h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+#find-route-panel label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#find-route-panel input,
+#find-route-panel select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px 8px;
+}
+
+#route-search {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 12px;
+  cursor: pointer;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+#route-search:disabled {
+  background: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.route-empty {
+  color: #666;
+  font-size: 13px;
+}
+
+.route-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fafbfc;
+}
+
+.route-card h4 {
+  font-size: 13px;
+  color: #1976d2;
+  margin-bottom: 6px;
+}
+
+.route-card__name {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.route-card ul {
+  margin: 6px 0 8px 18px;
+  font-size: 12px;
+}
+
+.route-card p {
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.modal__box {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 280px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+}
+
+.modal__box h3 {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.modal__box label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.modal__box input,
+.modal__box select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px 8px;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+.modal__actions button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #fff;
+}
+
+#connect-submit {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32;
+}
+
+.pulau-hover {
+  fill: green;
+}

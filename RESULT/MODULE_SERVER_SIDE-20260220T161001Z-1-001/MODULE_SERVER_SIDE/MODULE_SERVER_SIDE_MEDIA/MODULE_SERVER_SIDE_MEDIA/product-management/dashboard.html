@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      body {
+        background-color: #f4f6f9;
+      }
+      .sidebar {
+        width: 240px;
+        height: 100vh;
+        position: fixed;
+        background: #eef3fa;
+        border-right: 1px solid #ddd;
+      }
+      .sidebar .nav-link {
+        color: #333;
+        font-weight: 500;
+      }
+      .sidebar .nav-link.active {
+        background-color: #ccdaf0;
+        color: #0d6efd;
+        border-radius: 5px;
+      }
+      .sidebar .nav-link:hover {
+        background-color: #e7f1ff;
+      }
+      .content {
+        margin-left: 240px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar p-3">
+      <h4 class="text-primary fw-bold mb-4">Product Management</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a class="nav-link active" href="dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="categories.html">Categories</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="products.html">Products</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="transactions.html">Transactions</a>
+        </li>
+        <li class="nav-item mt-4">
+          <a class="nav-link text-danger" href="login.html">Logout</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <h3>Dashboard</h3>
+      <p>Welcome to the admin panel</p>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h6>Total Category</h6>
+              <h3>5</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h6>Total Product</h6>
+              <h3>20</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h6>Total Transaction</h6>
+              <h3>12</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

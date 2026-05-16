@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 600px;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .normal-img {
+        position: absolute;
+        width: 600px;
+      }
+
+      .gray-img {
+        margin-top: 4px;
+        position: absolute;
+        width: 600px;
+        width: 50%;
+        overflow: hidden;
+        float: left;
+        border-right: 2px solid white;
+      }
+
+      .gray-img img {
+        filter: grayscale();
+        width: 600px;
+      }
+      input {
+        position: absolute;
+        left: -10px;
+        -webkit-appearance: none;
+        appearance: none;
+        z-index: 3;
+        width: 620px;
+        background-color: transparent;
+      }
+
+      input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: ew-resize;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="gambar.webp" alt="" class="normal-img" />
+      <div class="gray-img" id="grayImg">
+        <img src="gambar.webp" alt="" />
+      </div>
+      <input type="range" min="0" max="100" id="slider" />
+    </div>
+
+    <script>
+      const grayImg = document.getElementById("grayImg");
+      const slider = document.getElementById("slider");
+
+      slider.addEventListener("input", function () {
+        grayImg.style.width = this.value + "%";
+      });
+    </script>
+  </body>
+</html>

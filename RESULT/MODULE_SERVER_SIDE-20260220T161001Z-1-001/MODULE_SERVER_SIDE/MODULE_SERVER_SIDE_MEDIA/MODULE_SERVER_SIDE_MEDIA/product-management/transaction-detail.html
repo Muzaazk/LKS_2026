@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Detail</title>
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            background: #eef3fa;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar .nav-link {
+            color: #333;
+            font-weight: 500;
+        }
+        .sidebar .nav-link.active {
+            background-color: #ccdaf0;
+            color: #0d6efd;
+            border-radius: 5px;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #e7f1ff;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar p-3">
+    <h4 class="text-primary fw-bold mb-4">Product Management</h4>
+    <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link" href="categories.html">Categories</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link" href="products.html">Products</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link active" href="transactions.html">Transactions</a>
+        </li>
+        <li class="nav-item mt-4">
+            <a class="nav-link text-danger" href="login.html">Logout</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Content -->
+<div class="content">
+    <h3>Transaction Detail</h3>
+
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Transaction Code:</strong> TRX-001</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Date:</strong> 2026-02-10</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Status:</strong> Completed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Laptop</td>
+                        <td>$8,000.00</td>
+                        <td>1</td>
+                        <td>$8,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Mouse</td>
+                        <td>$500.00</td>
+                        <td>1</td>
+                        <td>$500.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="table-secondary">
+                        <th colspan="4" class="text-end">Total</th>
+                        <th>$8,500.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <a href="transactions.html" class="btn btn-secondary btn-sm">
+                Back to Transactions
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

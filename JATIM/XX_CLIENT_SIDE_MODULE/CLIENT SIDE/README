@@ -1,0 +1,40 @@
+PROJECT OVERVIEW 
+A client needs a visual map that can display various locations and routes to each location. This map should be interactive, allowing users to zoom, pan, and click on markers to view detailed information. The website needs to be compatible with modern web browsers and mobile devices.  
+ 
+This module is a 3-hour competition task. You are required to develop a web-based application using only HTML, CSS, and JavaScript. The core functionality revolves around an interactive map of Indonesia, allowing users to add, connect, and manage pinpoint locations, as well as find routes between them. You are allowed to improve the usability and user interface for a better user experience. 
+ 	 
+Loading the Map 
+You are provided with an SVG image of the Indonesia map. The map should be loaded into the page full size zoomed-in without leaving any blank space. 
+
+Adding Pinpoint Location 
+Double-click in the map will show a popup containing an input for location name to add a pinpoint in the map. Clicking the enter button will submit the form. 
+If the pinpoint is added, it should show the pinpoint name, a button to connect the pinpoint, and a button to delete it. A pinpoint should be marked with a red map-pin icon. 
+The created pinpoint should be persistent. Reloading the page will not remove the pinpoints. 
+
+Connect Locations 
+If the user clicked the connect icon, the pinpoint label shows signs that the pinpoint is in the state of connecting (e.g. glow, changed colors). Then, click the target pinpoint and the connect popup will show. 
+In this form, users need to enter the distance in kilometers and the transportation mode. The transportation modes consist of: 
+1.	Train 
+○	Line color: #33E339 
+○ Speed: 120 km/h 
+○ Cost: Rp500/km 
+2.	Bus 
+○	Line color: #A83BE8 
+○ Speed: 80 km/h 
+○ Cost: Rp100/km 
+3.	Airplane 
+○	Line color: #000000 
+○ Speed: 800 km/h 
+○ Cost: Rp1.000/km 
+After submit, a line will appear connecting both pinpoint locations with the distance present in the middle of the line. 
+Users can add up to all transportation modes for each connection. Each connection can have a different distance and the distances (in km) will show in the center of the line.  
+Pan and zoom should be working correctly. Users should be able to zoom-in and zoomout the map by clicking CTRL+Scroll or CTRL+(+) and CTRL+(-). Zoom-in and zoomout functionality should follow the cursor position.  
+In a zoomed map, users should be able to move the map left and right by holding click and moving the cursor. 
+
+Find Route 
+The Find Route modal should always exist on the left side of the browser viewport. Users should be able to input “from pinpoint” and “to pinpoint” with the exact keyword name. If one of the inputs contains invalid pinpoint name, the search button should be disabled. 
+Clicking the search button will show up to 10 possible routes maximum, sorted by fastest duration or the cheapest cost. The order should be the fastest by default. 
+In each route, show the route name, the transportation steps, the duration, and the total cost. 
+
+Removing Pinpoint and Connection 
+To remove a connection between pinpoints, the user should be able to click the line, and press the del/backspace button. A pinpoint can be removed by clicking the trash can button in the label, removing all of its connection.  

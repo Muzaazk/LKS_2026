@@ -1,0 +1,9 @@
+[
+  { "sender": "me", "content": "Halo, apa kabar?" },
+  { "sender": "other", "content": "Kabar baik, kamu lagi apa?" },
+  { "sender": "me", "content": "Lagi belajar PHP buat LKS nih." },
+  { "sender": "me", "content": "Belajar PHP itu seru tapi harus teliti." },
+  { "sender": "other", "content": "Wah keren, semangat belajarnya ya!" },
+  { "sender": "me", "content": "Iya, PHP sangat berguna untuk backend." },
+  { "sender": "me", "content": "Semangat LKS!" }
+]

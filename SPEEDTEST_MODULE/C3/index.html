@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .box {
+        position: absolute;
+        cursor: grab;
+        width: 400px;
+        height: 400px;
+        background-color: transparent;
+        box-shadow: 0 0 0 9999px rgb(0, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box"></div>
+    <article>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam corrupti
+      animi earum! Itaque quis odio tempore deleniti. Blanditiis accusantium
+      iste voluptatibus at, sint optio alias eligendi ea, consequuntur laborum
+      maxime? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Consequuntur mollitia voluptatum a, nobis at necessitatibus voluptatem,
+      similique soluta incidunt quo architecto voluptates nam? Facilis sed et
+      non, possimus ut deleniti. Lorem ipsum dolor sit, amet consectetur
+      adipisicing elit. Pariatur reiciendis, accusantium numquam deserunt, qui
+      facilis, veritatis odit blanditiis cumque unde nam iusto corrupti ullam?
+      Non eaque id odio corporis hic!Loremlore Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Totam aut labore debitis nulla aliquid
+      beatae, rem tempore deleniti dolor quidem, cum natus veniam vitae tenetur
+      officia quasi voluptate asperiores reiciendis. Lorem ipsum dolor sit amet
+      consectetur, adipisicing elit. Asperiores minus voluptatibus repellat id
+      rerum laborum adipisci molestias, maiores officia provident alias
+      obcaecati recusandae doloribus quisquam cum? Illum ipsa perferendis quasi.
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit rem,
+      perferendis ratione rerum reiciendis fugiat culpa quis qui eligendi
+      repellat similique debitis commodi sit consectetur animi corrupti tenetur
+      dolorum quod. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Nihil natus ex maiores consectetur praesentium deserunt ratione inventore
+      esse, nostrum at nesciunt odit eligendi minima, magnam doloremque autem,
+      harum explicabo fugit. Lorem, ipsum dolor sit amet consectetur adipisicing
+      elit. Est, amet velit eos autem consequatur, ab consectetur nulla quasi
+      distinctio reprehenderit totam incidunt omnis esse voluptas ea hic?
+      Aliquid, enim eos. Lorem ipsum dolor sit, amet consectetur adipisicing
+      elit. Similique debitis, libero excepturi maxime minima saepe voluptatum
+      ut illum animi sit in aliquid enim, exercitationem rem facere? Nobis
+      praesentium dolore alias. Lorem ipsum dolor sit, amet consectetur
+      adipisicing elit. Amet tenetur deleniti mollitia rerum saepe sapiente eum,
+      vero delectus odit omnis recusandae. Illo nesciunt dicta, expedita ea
+      officia sunt deserunt hic! Lorem, ipsum dolor sit amet consectetur
+      adipisicing elit. Laborum, exercitationem? Numquam ea magnam, autem quae
+      qui esse sint perferendis nemo cupiditate odit delectus velit rem eligendi
+      dolore non recusandae dolorem. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Quia modi culpa molestiae sed sequi aliquid soluta magni
+      praesentium error tempore? A magnam facilis rerum quia repudiandae numquam
+      fugit, voluptatum ipsam? Lorem ipsum dolor sit amet consectetur,
+      adipisicing elit. Sequi sed nulla ratione quos consectetur distinctio quo
+      placeat itaque dolorem dolores. Omnis impedit veritatis aperiam modi,
+      magni corrupti repellat enim voluptas? loreq loer Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. Architecto maiores minima voluptatem
+      provident maxime explicabo. Impedit omnis possimus delectus minus nihil,
+      recusandae dolor inventore architecto error reprehenderit placeat! Sint,
+      consequatur!
+    </article>
+    <script>
+      const box = document.getElementById("box");
+
+      box.addEventListener("mousedown", function (e) {
+        offsetX = e.clientX - box.getBoundingClientRect().left;
+        offsetY = e.clientY - box.getBoundingClientRect().top;
+        box.style.cursor = "grabbing";
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      });
+
+      function onMouseMove(e) {
+        box.style.left = e.clientX - offsetX + "px";
+        box.style.top = e.clientY - offsetY + "px";
+      }
+
+      function onMouseUp() {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+        box.style.cursor = "grab";
+      }
+    </script>
+  </body>
+</html>

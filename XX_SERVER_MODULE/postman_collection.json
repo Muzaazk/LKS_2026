@@ -1,0 +1,627 @@
+{
+  "info": {
+    "_postman_id": "ffa27e30-40a0-4f38-be19-14d42caf097a",
+    "name": "Car",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51648037",
+    "_collection_link": "https://go.postman.co/collection/51648037-ffa27e30-40a0-4f38-be19-14d42caf097a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "item": [
+            {
+              "name": "Login success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = JSON.parse(responseBody)",
+                      "",
+                      "if(response?.user?.accessToken) {",
+                      "    if(response.user?.email === 'user1@webtech.id') {",
+                      "        pm.environment.set(\"accessToken\", response.user.accessToken);    ",
+                      "    } else if (response.user?.email === 'user2@webtech.id') {",
+                      "        pm.environment.set(\"accessToken2\", response.user.accessToken);    ",
+                      "    } else if (response.user?.email === 'user3@worldskills.org') {",
+                      "        pm.environment.set(\"accessToken3\", response.user.accessToken);    ",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"id_card_number\": \"00000000\",\n    \"password\": \"muzamil123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost/lks_26/KISI_KISI_JATENG/SERVER_SIDE/BACKEND/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "lks_26",
+                    "KISI_KISI_JATENG",
+                    "SERVER_SIDE",
+                    "BACKEND",
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "item": [
+            {
+              "name": "Logout success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{host}}/api/v1/auth/logout",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Register",
+          "item": [
+            {
+              "name": "Login success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = JSON.parse(responseBody)",
+                      "",
+                      "if(response?.user?.accessToken) {",
+                      "    if(response.user?.email === 'user1@webtech.id') {",
+                      "        pm.environment.set(\"accessToken\", response.user.accessToken);    ",
+                      "    } else if (response.user?.email === 'user2@webtech.id') {",
+                      "        pm.environment.set(\"accessToken2\", response.user.accessToken);    ",
+                      "    } else if (response.user?.email === 'user3@worldskills.org') {",
+                      "        pm.environment.set(\"accessToken3\", response.user.accessToken);    ",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"id_card_number\": \"00000000\",\n    \"name\": \"Muzamil\",\n    \"password\": \"muzamil123\",\n    \"born_date\": \"1/2/2009\",\n    \"gender\": \"male\",\n    \"addres\": \"Kebumen\",\n    \"regional_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:80/lks_26/KISI_KISI_JATENG/SERVER_SIDE/BACKEND/public/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "80",
+                  "path": [
+                    "lks_26",
+                    "KISI_KISI_JATENG",
+                    "SERVER_SIDE",
+                    "BACKEND",
+                    "public",
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation",
+      "item": [
+        {
+          "name": "Request data validation",
+          "item": [
+            {
+              "name": "Create a Form success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = JSON.parse(responseBody)",
+                      "",
+                      "if(response?.form?.slug) { ",
+                      "    pm.environment.set(\"formSlug\", response.form.slug);",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "12|fdgxB29APvqtmvpU4KSqdJmCUXqvkKcxPeBVu8w7a7cdd215",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"job\": \"programmer\",\n    \"job_description\": \"web_developer\",\n    \"income\": 4000000,\n    \"reason_accepted\": \"i want to buy car\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost/XX_SERVER_MODULE/BACKEND/api/v1/validation",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "XX_SERVER_MODULE",
+                    "BACKEND",
+                    "api",
+                    "v1",
+                    "validation"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get validation",
+          "item": [
+            {
+              "name": "Get all Forms success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = JSON.parse(responseBody)",
+                      "let lastForm = response?.forms?.find(form => form?.id === 3);",
+                      "",
+                      "if(lastForm) {",
+                      "    pm.environment.set(\"formSlug\", lastForm.slug);",
+                      "} else if(response?.forms?.length > 0) { ",
+                      "    pm.environment.set(\"formSlug\", response.forms[0].slug);",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://localhost:80/lks_26/KISI_KISI_JATENG/SERVER_SIDE/BACKEND/public/api/v1/validation",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "80",
+                  "path": [
+                    "lks_26",
+                    "KISI_KISI_JATENG",
+                    "SERVER_SIDE",
+                    "BACKEND",
+                    "public",
+                    "api",
+                    "v1",
+                    "validation"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Instalment",
+      "item": [
+        {
+          "name": "Get instalment car",
+          "item": [
+            {
+              "name": "get",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = JSON.parse(responseBody)",
+                      "",
+                      "if(response?.question?.id) { ",
+                      "    pm.environment.set(\"questionId\", response.question.id);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Languages\",\n    \"choice_type\": \"checkboxes\",\n    \"choices\": [\"Go\", \"PHP\", \"Javascript\", \"Python\", \"Dart\", \"C#\"],\n    \"is_required\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/api/v1/forms/{{formSlug}}/questions",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    "{{formSlug}}",
+                    "questions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get detail instalment car",
+          "item": [
+            {
+              "name": "Remove a Question success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "11|kpxoOnvyFzKOP35cjTYWJfkHtXBMhOKQkHm2xsUY4f1dc2bc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost/lks_26/KISI_KISI_JATENG/SERVER_SIDE/BACKEND/api/v1/instalment_cars/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "lks_26",
+                    "KISI_KISI_JATENG",
+                    "SERVER_SIDE",
+                    "BACKEND",
+                    "api",
+                    "v1",
+                    "instalment_cars",
+                    "2"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Applying instalment",
+      "item": [
+        {
+          "name": "Applying",
+          "item": [
+            {
+              "name": "applying",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "11|kpxoOnvyFzKOP35cjTYWJfkHtXBMhOKQkHm2xsUY4f1dc2bc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"instalment_id\": 1,\n    \"months\": 12,\n    \"notes\": \"this car is interested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost/lks_26/KISI_KISI_JATENG/SERVER_SIDE/BACKEND/api/v1/applications",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "lks_26",
+                    "KISI_KISI_JATENG",
+                    "SERVER_SIDE",
+                    "BACKEND",
+                    "api",
+                    "v1",
+                    "applications"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get application",
+          "item": [
+            {
+              "name": "get",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/api/v1/forms/{{formSlugStatic}}/responses",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "forms",
+                    "{{formSlugStatic}}",
+                    "responses"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+#splashscreen {
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  width: 100dvw;
+
+  position: absolute;
+}
+
+canvas {
+  border: 1px solid black;
+}
+.form_splashscreen {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+input,
+select {
+  padding: 10px;
+}
+.btn {
+  padding: 8px;
+}
+.box {
+  position: relative;
+}
+.instruction {
+  position: absolute;
+  height: 50dvh;
+  width: 50dvw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+#gameBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+}
+#main_game {
+  height: 500px;
+  width: 500px;
+  top: 50%;
+  /* position: absolute; */
+}
+
+.flex {
+  display: flex;
+}
+.cell_game {
+}
+#background {
+  position: absolute;
+}
+.character {
+  position: absolute;
+  z-index: 100;
+}
+
+.bom {
+  position: absolute;
+  z-index: 200;
+}

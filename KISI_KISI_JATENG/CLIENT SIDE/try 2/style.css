@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.wrap-content {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.wrap-pin {
+  z-index: 999;
+  position: absolute;
+  text-align: center;
+  display: none;
+}
+
+.wrap-pin-box {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.wrap-pin-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrap-pin-header h5 {
+  color: red;
+}
+
+.wrap-pin-header h5:hover {
+  cursor: pointer;
+  /* box-shadow: 0px 0px 10px blue; */
+}
+
+/* render pin */
+
+.wrap-pin2 {
+  position: absolute;
+  z-index: 100;
+  text-align: center;
+}
+
+.pin-box {
+  border: 1px solid black;
+  display: flex;
+  gap: 5px;
+  border-radius: 7px;
+  background-color: white;
+}
+
+.pin-box-name,
+.pin-box-connect {
+  padding: 5px;
+  border-right: 1px solid black;
+}
+
+.pin-box-delete {
+  padding: 5px;
+}
+
+#map path:hover {
+  fill: green;
+}
+
+.wrap-connect {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  display: none;
+}
+#popupConnect {
+  z-index: 9999999;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 7px;
+}
+
+#popupConnect header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+#popupConnect content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+#popupConnect header div {
+  color: red;
+}
+
+#popupConnect header div:hover {
+  cursor: pointer;
+}
+
+#submit {
+  background-color: rgb(38, 87, 233);
+  padding: 2px 5px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+}
+
+#lines {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+}
